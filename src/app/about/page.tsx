@@ -6,7 +6,7 @@ import React from "react";
 const About = () => {
 
     return (
-        <div className="">
+        <div className="max-w-[1500px] mx-auto lg:px-4 sm:px-6 lg:px-8 mt-4 mb-4 space-y-4">
             <div className="p-5 lg:p-10">
                 {/* Hero Section */}
                 <section className="flex flex-col gap-4 lg:gap-8 p-1 lg:p-4 bg-white">

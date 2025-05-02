@@ -52,6 +52,7 @@ const Contact = () => {
                 </div>
             </div>
         </div>
+        <img className="w-fill h-full" src="/banner.png" />
       </div>
     </>
   );
