@@ -8,7 +8,7 @@ const Specialities = () => {
     return (
         <div className="flex flex-col items-center p-6 bg-[#F8F8F8]">
             <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="w-full flex space-x-4">
+                <div className="w-full space-y-4 lg:space-y-0 lg:flex space-x-4">
                     <div className="w-full lg:w-1/2 rounded-lg py-16 px-6 text-white bg-cover bg-center" style={{ backgroundImage:`url('/bg-02.svg')` }}>
                         <h1 className="text-4xl font-semibold">Why</h1>
                         <h1 className="text-4xl font-semibold">Choose Us ?</h1>
