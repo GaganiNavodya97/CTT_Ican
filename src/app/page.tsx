@@ -4,6 +4,7 @@ import TrustedAirLines from "@/components/TrustedAirLines/page";
 import FlagshipProduct from "@/components/FlagshipProduct/page"; 
 import AppDetails from "@/components/AppDetails/page";
 import Specialities from "@/components/Specialities/page";
+import HomeBottom from "@/components/HomeBottom/page";
 
 export default function Home() {
   const items=[
@@ -45,6 +46,9 @@ export default function Home() {
         </div>
         <div className="w-full mt-4">
             <Specialities/>
+        </div>
+        <div className="w-full mt-4">
+            <HomeBottom/>
         </div>
     </div>
   );
