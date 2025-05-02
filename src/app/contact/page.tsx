@@ -7,7 +7,7 @@ import { IoLocationSharp } from "react-icons/io5";
 const Contact = () => {
   return (
     <>
-      <div className="max-w-[1500px] mx-auto lg:px-4 sm:px-6 lg:px-8 mt-4 mb-4 space-y-4">
+      <div className="max-w-[1500px] px-4 mx-auto lg:px-4 sm:px-6 lg:px-8 mt-4 mb-4 space-y-4">
         <div className="w-full flex flex-col items-center mt-16">
           <h1 className="text-[#154B94] text-5xl font-semibold lg:text-center">
             Got Questions? <span className="text-[#4BC7E7]">Contact Us</span>
