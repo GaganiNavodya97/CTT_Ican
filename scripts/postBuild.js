@@ -1,8 +1,9 @@
-const shell = require("shelljs");
 const path = require("path");
+const fs = require("fs");
+const shell = require("shelljs");
 
 // Folder name for export
-const exportFolder = "ceylon-travel-tech";
+const exportFolder = "ctt-dist";
 
 // Step 1: Create the 'ican_fly' folder
 shell.mkdir("-p", exportFolder);
@@ -66,14 +67,14 @@ if (shell.test("-d", nodeModulesFolder)) {
 }
 
 // Step 6: Copy the '.env.production' file to 'eats_menu'
-const envProductionFile = path.join(__dirname, "../.env.production");
-if (shell.test("-f", envProductionFile)) {
-  shell.cp(envProductionFile, exportFolder); // Copy .env.production to eats_menu
-} else {
-  console.error(
-    `Error: '.env.production' file not found at ${envProductionFile}`,
-  );
-}
+// const envProductionFile = path.join(__dirname, "../.env.production");
+// if (shell.test("-f", envProductionFile)) {
+//   shell.cp(envProductionFile, exportFolder); // Copy .env.production to eats_menu
+// } else {
+//   console.error(
+//     `Error: '.env.production' file not found at ${envProductionFile}`,
+//   );
+// }
 
 // Step 7: Prepare the static folder inside eats_menu/.next
 const exportStaticFolder = path.join(nextFolder, "static");
@@ -89,23 +90,37 @@ if (shell.test("-d", nextStaticFolder)) {
   );
 }
 
-// Step 9: Copy all .json files and BUILD_ID from .next to eats_menu/.next
-const nextFiles = path.join(__dirname, "../.next");
-const jsonFiles = shell.ls(`${nextFiles}/*.json`); // List all .json files
-const buildIdFile = path.join(nextFiles, "BUILD_ID");
+// Step 9: Copy all .json files and BUILD_ID from .next to ctt-dist/.next
+const nextDir = path.join(__dirname, "../.next");
 
-// Copy .json files
-if (jsonFiles.length > 0) {
-  shell.cp("-R", jsonFiles, nextFolder); // Copy all .json files to eats_menu/.next
+// Verify the directory exists
+if (!fs.existsSync(nextDir)) {
+  console.error(`Directory does not exist: ${nextDir}`);
 } else {
-  console.error(`No .json files found in ${nextFiles}`);
+  // List all files in the directory and filter for .json
+  const allFiles = fs.readdirSync(nextDir);
+  const jsonFiles = allFiles.filter(file => file.endsWith(".json"));
+
+  if (jsonFiles.length > 0) {
+    jsonFiles.forEach(file => {
+      const src = path.join(nextDir, file);
+      const dest = path.join(nextFolder, file);
+      shell.cp(src, dest);
+      console.log(`Copied ${file} to ${dest}`);
+    });
+  } else {
+    console.error(`No .json files found in ${nextDir}`);
+  }
+
+  // Copy BUILD_ID
+  const buildIdFile = path.join(nextDir, "BUILD_ID");
+  if (fs.existsSync(buildIdFile)) {
+    shell.cp(buildIdFile, nextFolder);
+    console.log(`Copied BUILD_ID to ${nextFolder}`);
+  } else {
+    console.error(`Error: 'BUILD_ID' file not found at ${buildIdFile}`);
+  }
 }
 
-// Copy BUILD_ID file
-if (shell.test("-f", buildIdFile)) {
-  shell.cp(buildIdFile, nextFolder); // Copy BUILD_ID file to eats_menu/.next
-} else {
-  console.error(`Error: 'BUILD_ID' file not found at ${buildIdFile}`);
-}
 
 console.log("Build and export completed successfully!");
