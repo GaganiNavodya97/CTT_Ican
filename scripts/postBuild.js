@@ -2,7 +2,7 @@ const shell = require("shelljs");
 const path = require("path");
 
 // Folder name for export
-const exportFolder = "ceylon-travel-tech";
+const exportFolder = "ctt-dist";
 
 // Step 1: Create the 'ican_fly' folder
 shell.mkdir("-p", exportFolder);
@@ -65,15 +65,15 @@ if (shell.test("-d", nodeModulesFolder)) {
   );
 }
 
-// Step 6: Copy the '.env.production' file to 'eats_menu'
-const envProductionFile = path.join(__dirname, "../.env.production");
-if (shell.test("-f", envProductionFile)) {
-  shell.cp(envProductionFile, exportFolder); // Copy .env.production to eats_menu
-} else {
-  console.error(
-    `Error: '.env.production' file not found at ${envProductionFile}`,
-  );
-}
+// Step 6: Copy the '.env.production' file to 'eats_menu'                        //comennted out for now because we are not using .env.production file
+// const envProductionFile = path.join(__dirname, "../.env.production");
+// if (shell.test("-f", envProductionFile)) {
+//   shell.cp(envProductionFile, exportFolder); // Copy .env.production to eats_menu
+// } else {
+//   console.error(
+//     `Error: '.env.production' file not found at ${envProductionFile}`,
+//   );
+// }
 
 // Step 7: Prepare the static folder inside eats_menu/.next
 const exportStaticFolder = path.join(nextFolder, "static");
