@@ -24,6 +24,9 @@ const Header = () => {
                         <Link href="/services" className={linkClass("/services")}>Privacy Policy</Link>
                         <Link href="/about" className={linkClass("/about")}>About Us</Link>
                         <Link href="/contact" className={linkClass("/contact")}>Contact us</Link>
+                        <button>
+                        <Link href="https://icanfly.lk" className="hidden md:block bg-[#154B94] text-white px-10 py-2 rounded-full hover:bg-[#0f3c7d] transition duration-300">Get Started</Link>
+                    </button>
                     </nav>
                     {/* Hamburger Menu (Mobile) */}
                     <div className="md:hidden flex items-center">
